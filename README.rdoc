@@ -2,5 +2,5 @@
 
 Looks up SteamGifts friends profiles, i.e.
 
-* http://sg-stalker.herokuapp.com/<SteamID>
-* http://sg-stalker.herokuapp.com/<customURL>
+* http://sg-stalker.herokuapp.com/(SteamID)
+* http://sg-stalker.herokuapp.com/(customURL)
