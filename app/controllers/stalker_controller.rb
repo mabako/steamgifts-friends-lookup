@@ -52,9 +52,14 @@ class StalkerController < ApplicationController
 
       @friends = []
       doc.search('friend').each do |f|
-        friend = f.content
-        profile = get_profile friend
-        @friends << Stalked.new(profile, friend) unless profile.nil?
+        stalked = Rails.cache.read(f.content)
+        unless stalked
+          friend = f.content
+          profile = get_profile friend
+          stalked = Stalked.new(profile, friend) unless profile.nil?
+          Rails.cache.write(f.content, stalked) unless stalked.nil?
+        end
+        @friends << stalked unless stalked.nil?
       end
       puts @friends
       @friends.sort!{ |a, b| a.name.downcase <=> b.name.downcase }
