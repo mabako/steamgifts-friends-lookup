@@ -1,0 +1,7 @@
+<h1><%= @s.u.name %> <small><%= link_to 'SG', @s.u.sg_url %>, <%= link_to 'Steam', @s.u.steam_url %></small></h1>
+
+<ul>
+<% @s.friends.each do |f| %>
+  <li><%= link_to f.name, f.stalk_url %> - <%= link_to 'SG', f.sg_url %>, <%= link_to 'Steam', f.steam_url %></li>
+<% end %>
+</ul>
